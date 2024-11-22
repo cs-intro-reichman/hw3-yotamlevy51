@@ -27,19 +27,31 @@ public class Algebra {
 	public static int plus(int x1, int x2) {
 		int y1 = x1;
 		int y2 = x2;
-		for (int i = 0; i < y1; i++) {
-			y2 ++;
+		if (y2 < 0) {
+			for (int i = 0; i > y2; i--) {
+				y1 --;
+			}	
+		} else {
+		for (int i = 0; i < y2; i++) {
+			y1 ++;
 		}
-		return y2;
+	}
+		return y1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int y1 = x1;
 		int y2 = x2;
-		for (int i = 0; i < y2; i++) {
+		if (y2 <0) {
+			for (int i = 0; i > y2; i--) {
+				y1 ++;
+			}
+		} else {
+			for (int i = 0; i < y2; i++) {
 			y1 --;
 		}
+	}
 		return y1;
 	}
 
@@ -48,9 +60,16 @@ public class Algebra {
 		int y1 = x1;
 		int y2 = x2;
 		int s = 0;
+		if (y1 < 0 || y2 < 0) {
+			for (int i = 0; i < y2 || i < y2; i--) {
+				s = - plus(s, y1);
+			}
+		} else {
+		
 		for (int i = 0; i < y2; i++) {
 			s = plus(s, y1);
 			
+			}
 		}
 		
 		return s;
@@ -61,7 +80,9 @@ public class Algebra {
 		int y = x;
 		int m = n;
 		int r = 0;
-		
+		if (m < 0) {
+			throw new IllegalArgumentException("Division by zero is not allowed");
+		}
 			if (m == 0) {
 				r = 1;
 			}
@@ -84,13 +105,16 @@ public class Algebra {
 		if (y2 == 0) {
 			throw new IllegalArgumentException("Division by zero is not allowed");
 
-		}
+		} else {
 		while (y1 >= y2) {
 			y1 = minus(y1, y2);
 			count ++;
-			
 		}
-			
+		} 
+
+		if (y1 < 0 || y2 < 0) {
+			count = times(count, -1);
+		}
 		return count;
 	}
 
