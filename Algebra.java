@@ -63,12 +63,10 @@ public class Algebra {
 		boolean isNegative = false;
 
     if (x1 < 0) {
-        x1 = -x1;
         isNegative = true;
     }
 
     if (x2 < 0) {
-        x2 = -x2;
         isNegative = true;
     }
 		
@@ -80,16 +78,19 @@ public class Algebra {
 		s = -s;
 	}
 		
-		return s;
+	return s;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int y = x;
 		int m = n;
-		int r = 0;
-		if (x < 0) {
-			throw new IllegalArgumentException("Division by zero is not allowed");
+		int r = 1;
+
+		if (m < 0) {
+			for (int i = 1; i > m; i--) {
+				r = div(1, times(r, y));
+			}
 		}
 			if (m == 0) {
 				r = 1;
