@@ -114,15 +114,16 @@ public class Algebra {
 		if (y2 == 0) {
 			throw new IllegalArgumentException("Division by zero is not allowed");
 		}
+
+		if (y1 < 0 && y2 > 0 || y1 > 0  && y2 < 0) {
+			count = times(count, -1);
+		}
 		
 		while (y1 >= y2) {
 			y1 = minus(y1, y2);
 			count ++;
 		}
 
-		if (y1 < 0 && y2 > 0 || y1 > 0  && y2 < 0) {
-			count = times(count, -1);
-		}
 		return count;
 	}
 
@@ -131,7 +132,7 @@ public class Algebra {
 		int y1 = x1;
 		int y2 = x2;
 		int s = y1;
-		if (x2 == 0) {
+		if (y2 == 0) {
 			throw new IllegalArgumentException("Division by zero is not allowed");
 		}
 
@@ -148,14 +149,15 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		int y = x;
 		int r = 0;
 		int s = 0;
 
-		if (x < 0) {
+		if (y < 0) {
 			throw new IllegalArgumentException("Cannot calculate the square root of a negative number");
 		}
 	
-		while (s <= x) {
+		while (s <= y) {
 			r++;
 			s = times(r, r); 
 		}
