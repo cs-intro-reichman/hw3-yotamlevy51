@@ -76,7 +76,7 @@ public class Algebra {
 	public static int pow(int x, int n) {
 		int y = x;
 		int m = n;
-		int r = 1; 
+		int r = y; 
 		boolean NegativeBase = x < 0;
 
 		if (m == 0) {
