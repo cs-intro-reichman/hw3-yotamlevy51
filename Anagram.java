@@ -32,7 +32,7 @@ public class Anagram {
 		String new2 = preProcess(str2);
 		char c;
 		for (int i = 0; i < new1.length(); i++) {
-			String cuttedStr2 = "";
+			String cut = "";
 			int indexStr2;
 			c = new1.charAt(i);
 			indexStr2 = new2.indexOf(c);
@@ -41,12 +41,11 @@ public class Anagram {
 				return false;
 			}
 			for (int j = 0; j < new2.length(); j++) {
-				if (j != indexStr2)
-				{
-					cuttedStr2 += new2.charAt(j);
+				if (j != indexStr2) {
+					cut += new2.charAt(j);
 				}
 			}
-			new2 = cuttedStr2;
+			new2 = cut;
 		}
 		return true;
 	}
@@ -60,14 +59,15 @@ public class Anagram {
 		for (int i = 0; i < str.length(); i++) {
 			c = str.charAt(i);
 			if ((c < 97) || (c > 122)) {
-				newString += (char)(c + 32);
+				if((c >= 65) && (c <= 90)){
+					newString += (char)(c + 32);
 				}
 				if (c == 32) {
-			    newString += c;
+			    	newString += c;
 				}
-			
+			}
 			else {
-			newString += c;
+				newString += c;
 			}
 		
 		}
