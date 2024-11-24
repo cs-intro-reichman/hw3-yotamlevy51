@@ -57,27 +57,18 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		int y1 = x1;
-		int y2 = x2;
+		int y1 = (x1 < 0) ? -x1 : x1;
+		int y2 = (x2 < 0) ? -x2 : x2;
 		int s = 0;
-		boolean isNegative = false;
-
-    if (x1 < 0) {
-        isNegative = true;
-    }
-
-    if (x2 < 0) {
-        isNegative = true;
-    }
 		
 	for (int i = 0; i < y2; i++) {
 		s = plus(s, y1);	
 	}
 
-	if (isNegative) {
-		s = -s;
+	if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+        s = -s;
 	}
-		
+
 	return s;
 	}
 
@@ -85,21 +76,18 @@ public class Algebra {
 	public static int pow(int x, int n) {
 		int y = x;
 		int m = n;
-		int r = 1;
+		int r = 1; 
+		boolean NegativeBase = x < 0;
 
-		if (m < 0) {
-			for (int i = 1; i > m; i--) {
-				r = div(1, times(r, y));
-			}
+		if (m == 0) {
+			r = 1;
 		}
-			if (m == 0) {
-				r = 1;
-			}
-			else {
-				r = y;
-			}
+			
 		for (int i = 1; i < m; i++) {
 			r = times(r, y);
+		}
+		if (NegativeBase && mod(n, 2) != 0) {
+			r = -r;
 		}
 		
 		return r;
@@ -115,13 +103,18 @@ public class Algebra {
 			throw new IllegalArgumentException("Division by zero is not allowed");
 		}
 
-		if (y1 < 0 && y2 > 0 || y1 > 0  && y2 < 0) {
-			count = times(count, -1);
-		}
+		boolean NegativeResult = (y1 < 0) != (y2 < 0);
+
+    	y1 = (y1 < 0) ? -y1 : y1; 
+    	y2 = (y2 < 0) ? -y2 : y2;
 		
 		while (y1 >= y2) {
 			y1 = minus(y1, y2);
 			count ++;
+		}
+
+		if (NegativeResult) {
+			count = -count;
 		}
 
 		return count;
