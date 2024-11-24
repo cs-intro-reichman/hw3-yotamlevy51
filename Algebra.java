@@ -76,18 +76,24 @@ public class Algebra {
 	public static int pow(int x, int n) {
 		int y = x;
 		int m = n;
-		int r = y; 
-		boolean NegativeBase = x < 0;
+		int r = 1; 
+		boolean NegativeBase = false;
 
 		if (m == 0) {
 			r = 1;
 		}
+
+		if (x < 0) {
+			y = minus(0, y);
+			NegativeBase = !NegativeBase;
 			
-		for (int i = 1; i < m; i++) {
+		}
+			
+		for (int i = 0; i < m; i++) {
 			r = times(r, y);
 		}
 		if (NegativeBase && mod(n, 2) != 0) {
-			r = -r;
+			return minus(0, r);
 		}
 		
 		return r;
