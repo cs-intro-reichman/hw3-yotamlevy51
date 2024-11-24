@@ -82,7 +82,7 @@ public class Anagram {
 		String s = str;
 		for (int i = 0; i < str.length(); i++) {
 			int rannum = (int)((Math.random()) * s.length());
-			ranword+= s.charAt(rannum);
+			ranword += s.charAt(rannum);
 			s = s.substring(0,rannum) + s.substring(rannum + 1);
 		}
 		return ranword;
